@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="dist/css/AdminLTE.min.css" />
+</h:head>
+<head>
+<title>Paul le poulpe</title>
+<!-- Bootstrap 3.3.2 -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- FontAwesome 4.3.0 -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
+<!-- Ionicons 2.0.0 -->
+<link
+	href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css"
+	rel="stylesheet" type="text/css" />
+<!-- Theme style -->
+<link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+<link href="dist/css/skins/_all-skins.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- iCheck -->
+<link href="plugins/iCheck/flat/blue.css" rel="stylesheet"
+	type="text/css" />
+<!-- jvectormap -->
+<link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css"
+	rel="stylesheet" type="text/css" />
+<!-- Date Picker -->
+<link href="plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+<!-- Daterange picker -->
+<link href="plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+<!-- bootstrap wysihtml5 - text editor -->
+<link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<h:form id="myform">
+	<h:body class="skin-blue">
+		<div class="wrapper">
+
+			<header class="main-header"> <!-- Logo --> <a
+				href="index2.html" class="logo"><b>Paul le </b>poulpe</a> <!-- Header Navbar: style can be found in header.less -->
+			<nav class="navbar navbar-static-top" role="navigation"> <!-- Sidebar toggle button-->
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+					<li class="dropdown user user-menu"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown"> <img
+							src="ball.png" class="user-image" alt="Paul le poulpe" /> <img
+							src="ball.png" class="user-image" alt="Paul le poulpe" /> <img
+							src="ball.png" class="user-image" alt="Paul le poulpe" />
+					</a></li>
+				</ul>
+			</div>
+			</nav> </header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar"> <!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar"> <!-- Sidebar user panel -->
+			<div class="user-panel">
+				<!--           ici qq chose -->
+			</div>
+			</section> <!-- /.sidebar --> </aside>
+
+			<!-- Right side column. Contains the navbar and content of the page -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+				<div class="row">
+					<div class="col-lg-3 col-xs-6">
+						<!-- small box -->
+						<div class="">
+						<p:graphicImage style="height:100px;" name="../premierleague.png" />
+						</div>
+					</div>
+					<div class="col-lg-6 col-xs-6">
+						<!-- small box -->
+						<h1>
+					Prédictions des matchs (Premiere league) <small></small>
+				        </h1>
+					</div>
+				</div>
+				</section>
+
+				<!-- Main content -->
+				<section class="content"> <!-- Small boxes (Stat box) -->
+				
+				<!-- /.row --> <!-- Main row -->
+				<div class="row">
+					<!-- Left col -->
+					<section class="col-lg-12 connectedSortable"> <!-- Custom tabs (Charts with tabs)-->
+
+					<div class="nav-tabs-custom">
+						<h:form>
+							<br />
+							<h:panelGrid columns="4"
+								style="margin-bottom:15px;margin-left:100px;" cellpadding="5">
+								<p:outputLabel for="console" value="Home team :" />
+								<p:selectOneMenu id="console" value="#{selectOne.equipeChoisi}"
+									style="width:250px;margin-left:10px;">
+									<f:selectItem itemLabel="Choisissez une equipe" itemValue="" />
+									<f:selectItems value="#{selectOne.getTeams()}" />
+									<p:ajax event="change" update=":myform:form:teamTab"
+										listener="#{selectOne.teamchoised}" />
+								</p:selectOneMenu>
+								<p:outputLabel style="margin-left:10px;" for="console2"
+									value="Away team:" />
+								<p:selectOneMenu id="console2"
+									value="#{selectOne.equipeChoisi2}"
+									style="width:250px;margin-left:10px;">
+									<f:selectItem itemLabel="Choisissez une equipe" itemValue="" />
+									<f:selectItems value="#{selectOne.teams}" />
+									<p:ajax event="change"
+										update=":myform:form:teamTab :myform:resultForm:result"
+										listener="#{selectOne.teamchoised2}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+							<br />
+							<p:ajaxStatus onstart="PF('statusDialog').show()"
+								onsuccess="PF('statusDialog').hide()" />
+						</h:form>
+					</div>
+					</section>
+					<p:dialog widgetVar="statusDialog"
+						style="background-color:grise;opacity:0.6;" modal="true"
+						draggable="false" closable="false" resizable="false"
+						showHeader="false">
+						<p:graphicImage name="../loading.gif" />
+					</p:dialog>
+
+					<div class="nav-tabs-custom">
+						<div class="callout callout-info">
+						<h:form id="resultForm">
+					      <h4>La prédiction du systéme: </h4>
+<!-- 					      <h:outputLabel id="bbl"> #{selectOne.getResultatFinal()} </h:outputLabel> -->
+							<h:outputLabel id="result">
+							<ui:fragment rendered ="#{selectOne.getDecision() == -1}">
+							<h3> #{selectOne.getEquipeHome()}</h3> <span style="color:red;"> <h3>Perd</h3></span>
+<!-- 							<h4>Avec Précision de : #{selectOne.getPercent()}</h4> -->
+							</ui:fragment>
+							<ui:fragment rendered ="#{selectOne.getDecision() == 1}">
+							<h3> #{selectOne.getEquipeHome()}</h3> <span style="color:green;"> <h3>Gagne</h3></span>
+<!-- 							<h4>Avec Précision de : #{selectOne.getPercent()}</h4> -->
+							</ui:fragment>
+							<ui:fragment rendered ="#{selectOne.getDecision() == 3}">
+							<span style="color:yellow;"><h3>Égalité</h3></span>
+<!-- 							<h4>Avec Précision de : #{selectOne.getPercent()}</h4> -->
+							</ui:fragment>
+							</h:outputLabel>
+						</h:form>
+						</div>
+					</div>
+					<section class="col-lg-12 connectedSortable"> <!-- Custom tabs (Charts with tabs)-->
+					<div class="nav-tabs-custom">
+						<h:form id="form">
+							<br />
+							<p:dataTable var="team" value="#{selectOne.teamsVar}"
+								id="teamTab">
+								<p:column headerText="Équipe">
+									<h:outputText value="#{team.equipe}" />
+								</p:column>
+								<p:column headerText="Victoire à domicile">
+									<h:outputText value="#{team.probaWinHome}" />
+								</p:column>
+								<p:column headerText="Victoire à l'ext">
+									<h:outputText value="#{team.probaWinAway}" />
+								</p:column>
+								<p:column headerText="Nombre de buts (5 der)">
+									<h:outputText value="#{team.fiveLastMatchB}" />
+								</p:column>
+								<p:column headerText="Age Moyen">
+									<h:outputText value="#{team.moyenAge}" />
+								</p:column>
+								<p:column headerText="Classemet">
+									<h:outputText value="#{team.moyenClassement}" />
+								</p:column>
+								<p:column headerText="Force d'attaque Home">
+									<h:outputText value="#{team.forceAttaqueH}" />
+								</p:column>
+								<p:column headerText="Force d'attaque Away">
+									<h:outputText value="#{team.forceAttaqueA}" />
+								</p:column>
+								<p:column headerText="Force deffence Home">
+									<h:outputText value="#{team.forceDeffH}" />
+								</p:column>
+								<p:column headerText="Force deffence Away">
+									<h:outputText value="#{team.forceDeffA}" />
+								</p:column>
+								<p:column headerText="Resultat">
+									<h:outputText value="#{team.resultat}" />
+								</p:column>
+								<p:column headerText="Annee">
+									<h:outputText value="#{team.year}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+						</h:form>
+					</div>
+					</section>
+					<section class="col-lg-12 connectedSortable"> <!-- Custom tabs (Charts with tabs)-->
+
+					<div class="nav-tabs-custom">
+						<h:form id="form2">
+							<br />
+							<br />
+						</h:form>
+					</div>
+					</section>
+				</div>
+				<!-- /.row (main row) -->
+				<div class="row">
+					<!-- Left col -->
+					<section class="col-lg-12 connectedSortable"> <!--               Custom tabs (Charts with tabs) -->
+
+					</section>
+					<!-- /.Left col -->
+					<!-- right col (We are only adding the ID to make the widgets sortable)-->
+				</div>
+				<!-- /.row (main row) --> </section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+			<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Projet</b> Fouilles de données
+			</div>
+			<strong>Copyright &copy; 2015-2016 <a
+				href="#">paul le pouple</a>.
+			</strong> All rights reserved. </footer>
+		</div>
+		<!-- ./wrapper -->
+
+	</h:body>
+</h:form>
+</html>
